@@ -7,7 +7,9 @@ import jwt_decode from "jwt-decode";
 import {AuthContext} from "../../components/context/AuthContext";
 
 
-function ProfielUpdate({SetChangeProfileData}) {
+function ProfielUpdate({SetChangeProfileData, SetRenderPage}) {
+
+
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const history = useHistory();
@@ -24,6 +26,8 @@ function ProfielUpdate({SetChangeProfileData}) {
     const {postalcode} = useContext(AuthContext);
     const {telnumber} = useContext(AuthContext);
 
+    const {updatePageFromAuthState}=useContext(AuthContext)
+
 
 
 
@@ -36,9 +40,28 @@ function ProfielUpdate({SetChangeProfileData}) {
         console.log("DATA: ", data)
         // sendFileToBackend();
 
+        try{
+            const response = await axios.put(`http://localhost:8080/customers`, data, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`, /*BACK TICK!!!!!*/
+                }
+            })
+
+        }catch(e){
+
+            console.log("PutStatus fout gegaan", e.response)
+            console.log("PutStatus fout gegaan", e.response.status)
+
+        }
+
+
+updatePageFromAuthState()
 
         //aanzetten wanneer axios klaar is
+        SetRenderPage(true)
         SetChangeProfileData(false)
+
 
     }
 

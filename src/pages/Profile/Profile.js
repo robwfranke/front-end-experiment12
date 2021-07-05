@@ -10,7 +10,6 @@ import ProfileImage from "./ProfileImage";
 import ProfileUpdate from "./ProfileUpdate";
 
 
-
 function Profile() {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -26,15 +25,8 @@ function Profile() {
     const user = decoded.sub;
 
 
-    const [newEmail, setNewEmail] = useState("")
-    const [newStreet, setNewStreet] = useState("")
-    const [newCity, setNewCity] = useState("")
-    const [newPostalcode, setnewPostalcode] = useState("")
-    const [newTelnumber, setnewTelnumber] = useState("")
-
-
+    const [renderPage, setRenderPage] = useState(false)
     const [changeProfileData, setChangeProfileData] = useState(false)
-    const {errorSubmit2, setErrorSubmit2} = useState(false);
 
 
     function showUpdateDataProfile() {
@@ -46,19 +38,18 @@ function Profile() {
     }
 
 
-    function onSubmit2(data) {
+    useEffect(() => {
+        console.log("UseEffect RenderPage")
 
-        console.log("IN onSubmit2")
-        console.log("DATA: ", data)
-        // sendFileToBackend();
-    }
 
+
+    }, [renderPage]);
     return (
 
         <>
-
-
-
+            {renderPage &&
+            <div>renderpage</div>
+            }
 
             <div className={styles.container}>
 
@@ -68,7 +59,6 @@ function Profile() {
 
 
                     <ProfileData/>
-
 
 
                     <button
@@ -91,11 +81,9 @@ function Profile() {
                 </div>
 
 
-
-
                 {/**************  PROFILE UPDATE   ************/}
 
-                {changeProfileData&&
+                {changeProfileData &&
 
 
                 <div className={styles.profielUpdate}>
@@ -105,7 +93,7 @@ function Profile() {
                     <div>HIER DE REST</div>
                     <ProfileUpdate
                         SetChangeProfileData={setChangeProfileData}
-
+                        SetRenderPage={setRenderPage}
                     />
 
                 </div>
