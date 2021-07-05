@@ -214,7 +214,7 @@ function ProfielImage() {
 
             {errorDeleteFile &&
 
-            <div className={styles.warning}>Er is iets fout gegaan bij het verwijderen
+            <div className={styles.alert}>Er is iets fout gegaan bij het verwijderen
                 Probeer het nog een keer!
                 Of neem contact op met ons.</div>
 

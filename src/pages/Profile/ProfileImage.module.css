@@ -8,16 +8,15 @@
 }
 
 .onSubmit {
-   display: flex;
+    display: flex;
     flex-direction: column;
     align-content: space-between;
-
 
 
 }
 
 .image {
-    /*    dis*/
+
 
     display: flex;
     width: 150px;
@@ -30,9 +29,6 @@
 
 .alert {
     background-color: white;
-
     color: red;
-
-
 }
 

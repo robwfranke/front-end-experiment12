@@ -1,15 +1,16 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {Link, useHistory} from 'react-router-dom';
-import styles from "./Profile.module.css"
+import styles from "./ProfileUpdate.module.css"
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import {AuthContext} from "../../components/context/AuthContext";
 
 
-function ProfielUpdate() {
+function ProfielUpdate({SetChangeProfileData}) {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const history = useHistory();
 
 
     const token = localStorage.getItem('token');
@@ -23,23 +24,22 @@ function ProfielUpdate() {
     const {postalcode} = useContext(AuthContext);
     const {telnumber} = useContext(AuthContext);
 
-    const [changeProfileData, setChangeProfileData] = useState(false)
 
 
-    function showUpdateDataProfile() {
-        if (changeProfileData) {
-            setChangeProfileData(false)
-        } else {
-            setChangeProfileData(true)
-        }
-    }
 
 
-    function onSubmit(data) {
+
+
+    async function onSubmit(data) {
 
         console.log("PROFILE UPDATE IN onSubmit2")
         console.log("DATA: ", data)
         // sendFileToBackend();
+
+
+        //aanzetten wanneer axios klaar is
+        SetChangeProfileData(false)
+
     }
 
 
@@ -47,7 +47,7 @@ function ProfielUpdate() {
         <>
 
 
-            <div>
+            <div className={styles.container}>
                 <form
 
                     className={styles.onSubmit}
@@ -90,7 +90,7 @@ function ProfielUpdate() {
                             })}
                         />
                         {errors.city && (
-                            <span className={styles["alert"]}>check uw stad!</span>
+                            <span className={styles.alert}>check uw stad!</span>
                         )}
                     </label>
 
@@ -173,7 +173,7 @@ function ProfielUpdate() {
                     <div>
 
                         <button
-                            className={styles.button2}
+                            className={styles.button}
 
                             type="submit"
 
@@ -183,8 +183,10 @@ function ProfielUpdate() {
 
 
                         <button
-                            className={styles.button2}
-                            onClick={showUpdateDataProfile}
+                            className={styles.button}
+                            onClick={()=>
+                                SetChangeProfileData(false)
+                            }
                         >
                             cancel
                         </button>
