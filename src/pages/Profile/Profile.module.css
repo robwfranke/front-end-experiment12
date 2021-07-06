@@ -50,7 +50,19 @@
     padding: 20px;
 }
 
-.button1 {
+.buttonField {
+padding: 20px
+;
+    display: flex;
+
+    align-content: center;
+
+}
+
+
+.buttonChange {
+    display: block;
+    padding: 5px;
     background-color: magenta;
 }
 

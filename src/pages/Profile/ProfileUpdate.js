@@ -77,27 +77,6 @@ updatePageFromAuthState()
                     onSubmit={handleSubmit(onSubmit)}
                 >
 
-                    {/*<label htmlFor="password-field">*/}
-                    {/*    Password:*/}
-                    {/*    <input*/}
-                    {/*        type="password"*/}
-                    {/*        placeholder="min 8 karakters"*/}
-                    {/*        {...register("password", {*/}
-                    {/*            required:true,*/}
-                    {/*            minLength: {*/}
-                    {/*                value: 8,*/}
-                    {/*            }*/}
-                    {/*        })}*/}
-                    {/*    />*/}
-                    {/*    {errors.password && (*/}
-                    {/*        <span className={styles["alert"]}>Minimaal 8 karakters!</span>*/}
-                    {/*    )}*/}
-                    {/*</label>*/}
-
-
-
-
-
                     <label htmlFor="city-field">
                         Stad:
                         <input

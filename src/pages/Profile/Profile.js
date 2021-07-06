@@ -8,16 +8,17 @@ import jwt_decode from "jwt-decode";
 import ProfileData from "./ProfileData";
 import ProfileImage from "./ProfileImage";
 import ProfileUpdate from "./ProfileUpdate";
+import ProfilePassword from "./ProfilePassword";
 
 
 function Profile() {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
-    const {
-        register: register2,
-        errors: errors2,
-        handleSubmit: handleSubmit2
-    } = useForm();
+    // const {register, handleSubmit, formState: {errors}} = useForm();
+    // const {
+    //     register: register2,
+    //     errors: errors2,
+    //     handleSubmit: handleSubmit2
+    // } = useForm();
 
     const token = localStorage.getItem('token');
     console.log("TOKEN IN PROFILE.js", token)
@@ -27,15 +28,35 @@ function Profile() {
 
     const [renderPage, setRenderPage] = useState(false)
     const [changeProfileData, setChangeProfileData] = useState(false)
+    const [changePassword, setChangePassword] = useState(false)
 
 
     function showUpdateDataProfile() {
         if (changeProfileData) {
+            setChangePassword(false)
             setChangeProfileData(false)
         } else {
             setChangeProfileData(true)
         }
     }
+
+
+    function showUpdatePassword() {
+        if (changePassword) {
+            setChangePassword(false)
+            setChangeProfileData(false)
+        } else {
+            setChangePassword(true)
+        }
+    }
+    useEffect(() => {
+        console.log("UseEffect RenderPage")
+
+
+
+    }, [changeProfileData,changePassword]);
+
+
 
 
     useEffect(() => {
@@ -44,6 +65,9 @@ function Profile() {
 
 
     }, [renderPage]);
+
+
+
     return (
 
         <>
@@ -60,14 +84,22 @@ function Profile() {
 
                     <ProfileData/>
 
-
+<fieldset className={styles.buttonField}>
                     <button
-                        className={styles.button1}
-                        onClick={showUpdateDataProfile}
+                        className={styles.buttonChange}
+                         onClick={showUpdateDataProfile}
                     >
                         verander gegevens
                     </button>
 
+
+                    <button
+                        className={styles.buttonChange}
+                        onClick={showUpdatePassword}
+                    >
+                        verander password
+                    </button>
+                </fieldset>
 
                 </div>
 
@@ -97,6 +129,30 @@ function Profile() {
                 </div>
 
                 }
+
+
+                {/**************  PROFILE PASSWORD   ************/}
+
+                {changePassword &&
+
+
+                <div className={styles.profielUpdate}>
+
+
+                    <ProfilePassword
+                        SetChangePassword={setChangePassword}
+                        SetRenderPage={setRenderPage}
+                    />
+
+                </div>
+
+                }
+
+
+
+
+
+
 
 
             </div>
