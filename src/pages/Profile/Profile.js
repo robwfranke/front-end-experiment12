@@ -33,10 +33,11 @@ function Profile() {
 
     function showUpdateDataProfile() {
         if (changeProfileData) {
-            setChangePassword(false)
+
             setChangeProfileData(false)
         } else {
             setChangeProfileData(true)
+            setChangePassword(false)
         }
     }
 
@@ -44,17 +45,16 @@ function Profile() {
     function showUpdatePassword() {
         if (changePassword) {
             setChangePassword(false)
-            setChangeProfileData(false)
+
         } else {
             setChangePassword(true)
+            setChangeProfileData(false)
         }
     }
-    useEffect(() => {
-        console.log("UseEffect RenderPage")
 
 
 
-    }, [changeProfileData,changePassword]);
+
 
 
 
