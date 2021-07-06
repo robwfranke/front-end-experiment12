@@ -30,7 +30,7 @@ function ProfielData() {
       <>
 
 
-
+<div>
           <div className={styles.profile}>
               <h3>Profiel gegevens:</h3>
               <div><strong>UserName: </strong>{user}</div>
@@ -45,7 +45,7 @@ function ProfielData() {
 
           </div>
 
-
+</div>
 
 
 

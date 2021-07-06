@@ -59,7 +59,7 @@ function ProfielImage() {
             const response = await axios.delete(`http://localhost:8080/files/${fileID}`, {
                 headers: {
                     "Content-Type": "application/json",
-                    // Authorization: `Bearer ${jwtToken}`, /*BACK TICK!!!!!*/
+                    Authorization: `Bearer ${token}`, /*BACK TICK!!!!!*/
                 }
             })
             setupdateFiles(true)
@@ -83,7 +83,12 @@ function ProfielImage() {
         try {
             console.log("IN PROFILEIMAGE: getFilesFromBackend")
 
-            const response = await axios.get("http://localhost:8080/files")
+            const response = await axios.get("http://localhost:8080/files",{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`, /*BACK TICK!!!!!*/
+                }
+            })
 
             setLength(response.data.length);
             setAllImages(response.data);
@@ -122,8 +127,8 @@ function ProfielImage() {
             const response = await axios.post("http://localhost:8080/files", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`, /*BACK TICK!!!!!*/
 
-                    "Content-type": "application/json",
                 },
             });
 

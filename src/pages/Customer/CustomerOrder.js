@@ -4,7 +4,7 @@ import {AuthContext} from "../../components/context/AuthContext";
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 
-import styles from "../Customer/Customer.module.css";
+import styles from "./Customer.module.css";
 import jwt_decode from "jwt-decode";
 
 function CustomerOrder(CustomerUpdatePage) {
@@ -301,7 +301,12 @@ function CustomerOrder(CustomerUpdatePage) {
                                     type="text"
 
                                     placeholder="vb. dwg 2021-001"
-                                    {...register("itemname", {required: true})}
+                                    {...register("itemname", {
+                                            required: true,
+                                            pattern: /^[0-9A-Za-z\s\-\_]+$/
+
+                                        }
+                                     )}
                                 />
                                 {errors.itemname && (
                                     <span className={styles["alert"]}>Vul uw itemname in</span>
