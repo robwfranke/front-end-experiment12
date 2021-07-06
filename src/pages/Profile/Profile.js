@@ -88,9 +88,7 @@ function Profile() {
 
                 <div className={styles.profielUpdate}>
 
-                    <div>Update</div>
 
-                    <div>HIER DE REST</div>
                     <ProfileUpdate
                         SetChangeProfileData={setChangeProfileData}
                         SetRenderPage={setRenderPage}
