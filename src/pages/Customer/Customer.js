@@ -70,7 +70,7 @@ function Customer() {
                     Authorization: `Bearer ${jwtToken}`, /*BACK TICK!!!!!*/
                 }
             })
-            // setErrorMessageDeleteOrder(false)
+
             setMessageDeleteOrder(true);
             setTimeout(() => {
                 setLoadOrderState(true)
@@ -212,10 +212,13 @@ function Customer() {
                                 type="text"
 
                                 placeholder="vb tekening nummer"
-                                {...register("ordername", {required: true})}
+                                {...register("ordername", {
+                                    required: true,
+                                    pattern: /^[0-9A-Za-z\s\-\_]+$/
+                                })}
                             />
                             {errors.ordername && (
-                                <span className={styles["alert"]}>Vul order naam in</span>
+                                <span className={styles["alert"]}>Alleen letters, cijfers, spaties, - , _ </span>
 
                             )}
                         </label>

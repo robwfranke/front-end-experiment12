@@ -38,6 +38,7 @@
 }
 
 .alert {
+    display: block;
     background-color: red;
 }
 

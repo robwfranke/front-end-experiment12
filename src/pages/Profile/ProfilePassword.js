@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {Link, useHistory} from 'react-router-dom';
-import styles from "./ProfileUpdate.module.css"
+import styles from "./ProfileCSS/ProfilePassword.module.css"
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import {AuthContext} from "../../components/context/AuthContext";

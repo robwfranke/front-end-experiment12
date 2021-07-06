@@ -3,7 +3,7 @@ import {AuthContext} from "../../components/context/AuthContext";
 import axios from "axios";
 import {useForm} from 'react-hook-form';
 import {Link, useHistory} from 'react-router-dom';
-import styles from "./Profile.module.css"
+import styles from "./ProfileCSS/Profile.module.css"
 import jwt_decode from "jwt-decode";
 import ProfileData from "./ProfileData";
 import ProfileImage from "./ProfileImage";

@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {Link, useHistory} from 'react-router-dom';
-import styles from "./ProfileImage.module.css"
+import styles from "./ProfileCSS/ProfileImage.module.css"
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
