@@ -10,7 +10,7 @@ import styles from "../Login/Login.module.css";
 function Login() {
     const {login} = useContext(AuthContext);
     const {role} = useContext(AuthContext);
-    const {handleSubmit, register} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const [error, setError] = useState("");
     const [opgehaald, setOpgehaald] = useState(false)
     const history = useHistory();
@@ -36,12 +36,12 @@ function Login() {
 
         try {
             console.log("data:  ", data)
-            console.log("userNameInput:  ", data.userNameInput)
+            console.log("userNameInput:  ", data.username)
             console.log("data.password:  ", data.password)
 
 
             const dataJwt = {
-                username: data.userNameInput,
+                username: data.username,
                 password: data.password
             }
 
@@ -75,51 +75,74 @@ function Login() {
         <>
 
 
-            <div className={styles.x}>
 
-            <div className={styles.container}>
 
-                <div className={styles.submit}>
+
                     <form
                         className={styles.submit}
                         onSubmit={handleSubmit(onSubmit)}>
-                        <label htmlFor="username-field">
-                            Username:
-                            <input
-                                type="text"
-                                id="username-field"
-                                name="userName"
-                                {...register("userNameInput")}
-                            />
-                        </label>
 
-                        <label htmlFor="password-field">
-                            Wachtwoord:
-                            <input
-                                type="password"
-                                id="password-field"
-                                name="password"
-                                {...register("password")}
-                            />
-                        </label>
+                        <fieldset className={styles["registration-container"]}>
+
+                            <label htmlFor="username-field">
+                                Username:
+                                <input
+                                    type="text"
+
+                                    placeholder="vb. Jan Klaassen"
+                                    {...register("username", {
+                                        required: true,
+                                        minLength: {
+                                            value: 3,
+                                        }
+                                    })}
+                                />
+                                {errors.username && (
+                                    <span className={styles["alert"]}>Vul uw username in (min 3 letters)</span>
+
+                                )}
+                            </label>
+
+                            <label htmlFor="password-field">
+                                Password   :
+                                <input
+                                    type="password"
+                                    placeholder="min 8 karakters"
+                                    {...register("password", {
+                                        required: true,
+                                        // minLength: {
+                                        //     value: 8,
+                                        // }
+                                    })}
+                                />
+                                {errors.password && (
+                                    <span className={styles["alert"]}>Minimaal 8 karakters!</span>
+                                )}
+                            </label>
                         <button
                             type="submit"
-                            className={styles.button}
+                            className={styles.submitButton}
                         >
                             Inloggen
                         </button>
+
+                            <p>Heb je nog geen account? <Link to="/registration">Registreer</Link> je dan eerst.</p>
+
+            </fieldset>
                     </form>
-                </div>
+
+
+
 
                 {opgehaald &&
                 <h1>Ingelogd!! Nu naar homepage!</h1>
                 }
 
 
-                <p>Heb je nog geen account? <Link to="/registration">Registreer</Link> je dan eerst.</p>
 
-            </div>
-            </div>
+
+
+
         </>
     );
 }

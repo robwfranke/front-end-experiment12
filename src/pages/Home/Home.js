@@ -6,7 +6,7 @@ function Home() {
     return (
         <>
             <section>
-                Lotrac BV
+
                 <h2>Welkom bij Lotrac BV.</h2>
                 <p>Lotrac BV is een machinefabriek, opgericht in 1989.
                     Wij kunnen de meest uitdagende projecten, aarzel niet om met ons contact op te nemen!!

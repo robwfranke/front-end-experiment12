@@ -1,34 +1,72 @@
-.x{
 
-   display: flex;
-    flex-direction:column;
-    width: 100%;
-    align-items: center;
-    justify-content: end;
-
-
-
-}
-.container {
-    display: flex;
-    flex-direction: column;
+.registration-container {
+    width: 600px;
     box-sizing: border-box;
-    width: 40%;
-    background-color: lightsalmon;
-}
-
-.submit{
-    display: flex;
     flex-direction: column;
-
-}
-
-.button{
+    color: black;
+    background-color: coral;
     display: flex;
-    /*align-content: center;*/
-    /*align-items: center;*/
-    justify-content: end;
-    width: 100px;
-    background-color: red;
-
+    justify-content: center;
+    height: auto;
+    align-items: flex-start;
+    margin-left: 150px;
 }
+
+
+
+.alert {
+    background-color: red;
+}
+
+
+.submitButton {
+    background-color: darkturquoise;
+    font-size: 15px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*.x{*/
+
+/*   display: flex;*/
+/*    flex-direction:column;*/
+/*    width: 100%;*/
+/*    align-items: center;*/
+/*    justify-content: end;*/
+
+
+
+/*}*/
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    box-sizing: border-box;*/
+/*    width: 40%;*/
+/*    background-color: lightsalmon;*/
+/*}*/
+
+/*.submit{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+
+/*}*/
+
+/*.button{*/
+/*    display: flex;*/
+/*    !*align-content: center;*!*/
+/*    !*align-items: center;*!*/
+/*    justify-content: end;*/
+/*    width: 100px;*/
+/*    background-color: red;*/
+
+/*}*/

@@ -68,17 +68,22 @@ function Registration() {
                             type="text"
 
                             placeholder="vb. Jan Klaassen"
-                            {...register("username", {required: true})}
+                            {...register("username", {
+                                required: true,
+                                minLength: {
+                                    value: 3,
+                                }
+                            })}
                         />
                         {errors.username && (
-                            <span className={styles["alert"]}>Vul uw username in</span>
+                            <span className={styles["alert"]}>Vul uw username in (min 3 letters)</span>
 
                         )}
                     </label>
 
 
                     <label htmlFor="password-field">
-                        Password:
+                        Password   :
                         <input
                             type="password"
                             placeholder="min 8 karakters"
@@ -96,7 +101,7 @@ function Registration() {
 
 
                     <label htmlFor="email-field">
-                        email:
+                        email        :
                         <input
                             type="email"
                             placeholder="vb. naam@nogwat.nl"
@@ -183,7 +188,7 @@ function Registration() {
 
                     <button
                         type="submit"
-                        className={styles["submit-button"]}
+                        className={styles.submitButton}
                     >
                         Inloggen
                     </button>
