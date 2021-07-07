@@ -4,6 +4,7 @@ import {Link, useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import axios from "axios";
 import {AuthContext} from "../../components/context/AuthContext";
+import styles from "../Login/Login.module.css";
 
 
 function Login() {
@@ -13,6 +14,7 @@ function Login() {
     const [error, setError] = useState("");
     const [opgehaald, setOpgehaald] = useState(false)
     const history = useHistory();
+
 
     console.log("LOGINPAGE, role:", role)
     if ((role === "ADMIN")) {
@@ -73,44 +75,51 @@ function Login() {
         <>
 
 
-            <h1>Login pagina</h1>
+            <div className={styles.x}>
+
+            <div className={styles.container}>
+
+                <div className={styles.submit}>
+                    <form
+                        className={styles.submit}
+                        onSubmit={handleSubmit(onSubmit)}>
+                        <label htmlFor="username-field">
+                            Username:
+                            <input
+                                type="text"
+                                id="username-field"
+                                name="userName"
+                                {...register("userNameInput")}
+                            />
+                        </label>
+
+                        <label htmlFor="password-field">
+                            Wachtwoord:
+                            <input
+                                type="password"
+                                id="password-field"
+                                name="password"
+                                {...register("password")}
+                            />
+                        </label>
+                        <button
+                            type="submit"
+                            className={styles.button}
+                        >
+                            Inloggen
+                        </button>
+                    </form>
+                </div>
+
+                {opgehaald &&
+                <h1>Ingelogd!! Nu naar homepage!</h1>
+                }
 
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="username-field">
-                    Username:
-                    <input
-                        type="text"
-                        id="username-field"
-                        name="userName"
-                        {...register("userNameInput")}
-                    />
-                </label>
+                <p>Heb je nog geen account? <Link to="/registration">Registreer</Link> je dan eerst.</p>
 
-                <label htmlFor="password-field">
-                    Wachtwoord:
-                    <input
-                        type="password"
-                        id="password-field"
-                        name="password"
-                        {...register("password")}
-                    />
-                </label>
-                <button
-                    type="submit"
-                    className="form-button"
-                >
-                    Inloggen
-                </button>
-            </form>
-
-            {opgehaald &&
-            <h1>Ingelogd!! Nu naar homepage!</h1>
-            }
-
-
-            <p>Heb je nog geen account? <Link to="/registration">Registreer</Link> je dan eerst.</p>
-
+            </div>
+            </div>
         </>
     );
 }
