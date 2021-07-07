@@ -1,12 +1,40 @@
 import React from 'react';
+import styleFreesbank from "../../Images/Style.png";
+import styles from "./Home.module.css";
 
 function Home() {
     return (
+        <>
         <section>
-            <h1>Home pagina</h1>
-            <h2>Welkom op een fantastisch blogplatform.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque doloremque officiis quae tempore voluptatum! Harum mollitia necessitatibus, officiis porro quia quidem sit. Accusamus adipisci aliquid autem blanditiis, commodi culpa dignissimos dolorem eaque earum fugiat ipsum iure laboriosam odit perspiciatis provident quam quasi qui reprehenderit ullam vero. Consequatur ipsum magnam maiores modi nam praesentium quia? Adipisci corporis et illum minus, porro quae recusandae. Ab accusantium architecto autem deleniti dolor dolorem ea earum, error esse laborum minus molestias nam neque nisi numquam porro quasi quidem quis quo repellendus sit unde voluptas. Animi consequuntur dicta error expedita iusto officiis perspiciatis reiciendis ut voluptatum.</p>
+          Lotrac BV
+            <h2>Welkom bij Lotrac BV.</h2>
+            <p>Lotrac BV is een machinefabriek, opgericht in 1989.
+            Wij kunnen de meest uitdagende projecten, aarzel niet om met ons contact op te nemen!!
+
+            </p>
+
+            <h4 className={styles.infoText}>
+                <div>Lotrac BV,</div>
+                <div> Jan Jansen straat 1</div>
+                <div> 2021 TK Ergenshuizen</div>
+                <div>tel: kies maar wat.</div>
+                <div> email: Lotrac@gmail.com</div>
+
+
+
+
+
+            </h4>
+
         </section>
+    <div className={styles.imagePosition}>
+        <img
+            className={styles.image}
+            src={styleFreesbank}
+            alt="Freesbank"/>
+    </div>
+</>
+
     );
 }
 

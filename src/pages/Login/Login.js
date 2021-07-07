@@ -1,4 +1,4 @@
-import React,{useState,useContext,useEffect} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 
 import {Link, useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
@@ -6,46 +6,42 @@ import axios from "axios";
 import {AuthContext} from "../../components/context/AuthContext";
 
 
-
-
 function Login() {
     const {login} = useContext(AuthContext);
-    const {role}=useContext(AuthContext);
+    const {role} = useContext(AuthContext);
     const {handleSubmit, register} = useForm();
     const [error, setError] = useState("");
-    const[opgehaald,setOpgehaald]=useState(false)
+    const [opgehaald, setOpgehaald] = useState(false)
     const history = useHistory();
 
-    console.log("LOGINPAGE, role:",role)
-    if ((role==="ADMIN")){
-            history.push("/admin1")
+    console.log("LOGINPAGE, role:", role)
+    if ((role === "ADMIN")) {
+        history.push("/admin1")
     }
 
-    if (role==="COMPANY_USER"){
+    if (role === "COMPANY_USER") {
         history.push("/companyUser")
     }
 
 
-    if (role === "CUSTOMER"){
-        history.push("/customer")
+    if (role === "CUSTOMER") {
+        history.push("/home")
     }
 
 
+    async function onSubmit(data) {
+        console.log("Login Page, data:  ", data);
 
-    async function onSubmit(data){
-        console.log("Login Page, data:  ",data)  ;
-
-        try{
-            console.log("data:  ",data)
-            console.log("userNameInput:  ",data.userNameInput)
-            console.log("data.password:  ",data.password)
+        try {
+            console.log("data:  ", data)
+            console.log("userNameInput:  ", data.userNameInput)
+            console.log("data.password:  ", data.password)
 
 
-            const dataJwt={
-                username:data.userNameInput,
+            const dataJwt = {
+                username: data.userNameInput,
                 password: data.password
             }
-
 
 
             const response = await axios.post("http://localhost:8080/authenticate", dataJwt);
@@ -60,15 +56,8 @@ function Login() {
             console.log("Login klaar met login(response.data.jwt)")
             setOpgehaald(true)
 
-            //
-            // setTimeout(() => {
-            //     console.log("Switchen naar homePage")
-            //                  history.push("/home")
-            // }, 3000);
 
-
-
-        }catch (error) {
+        } catch (error) {
             // console.log("response status",response);
             console.log("foutje, user niet aanwezig")
             setError("Er is iets mis gegaan met het ophalen");
@@ -76,14 +65,7 @@ function Login() {
         }
 
 
-
-
-
     }
-
-
-
-
 
 
     return (
@@ -91,10 +73,7 @@ function Login() {
         <>
 
 
-
             <h1>Login pagina</h1>
-
-
 
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -126,7 +105,7 @@ function Login() {
             </form>
 
             {opgehaald &&
-                <h1>Ingelogd!! Nu naar homepage!</h1>
+            <h1>Ingelogd!! Nu naar homepage!</h1>
             }
 
 

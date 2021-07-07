@@ -26,19 +26,28 @@ function App() {
     const {email} = useContext(AuthContext);
 
     console.log("Navigation, role uit authcontext: ", role)
+    console.log("OP APP.js")
+    console.log("ROLE in APP.js",role)
+
 
     let isAuthCustomer = false;
     let isAuthUser = false;
     let isAuthAdmin = false;
+    //
+    // if(role=="empty"){
+    //     isAuthAdmin = false
+    //     isAuthUser = false
+    //     isAuthCustomer = false
+    // }
 
-    if (role == "ADMIN") {
+    if (role === "ADMIN") {
         isAuthAdmin = true
 
     }
-    if (role == "COMPANY_USER") {
+    if (role === "COMPANY_USER") {
         isAuthUser = true
     }
-    if (role == "CUSTOMER") {
+    if (role === "CUSTOMER") {
         isAuthCustomer = true
 
     }
@@ -47,12 +56,11 @@ function App() {
     console.log("APP.js, ADMIN: ", isAuthAdmin)
     console.log("APP.js, COMPANY_USER: ", isAuthUser)
     console.log("APP.js, CUSTOMER: ", isAuthCustomer)
-    if ((isAuthCustomer === false) && (isAuthUser === false) && (isAuthAdmin === false)) {
-        history.push("/")
-    }
+
 
 
     return (
+        <>
         <div>
             <Navigation
                 isAuthCustomer={isAuthCustomer}
@@ -118,6 +126,7 @@ function App() {
         </div>
 
 
+        </>
     )
 }
 

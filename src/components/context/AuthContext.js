@@ -197,7 +197,16 @@ function AuthContextProvider({children}) {
         });
     }
 
+function clearRoleFunction(){
+        setAuthState(
 
+            {
+                role:"empty"
+            }
+        )
+
+
+}
 
 
 
@@ -244,6 +253,7 @@ function AuthContextProvider({children}) {
         ...authState,
         login: loginFunction,
         updatePageFromAuthState:updatePageFunction,
+        clearRole:clearRoleFunction,
         // logout: logoutFunction,
     }
 
