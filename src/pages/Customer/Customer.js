@@ -1,12 +1,13 @@
 import React, {useContext, useState, useEffect} from 'react';
 import axios from "axios";
+
+// import axios from "../../components/HttpHeader";
 import {useLocation, useHistory, NavLink} from "react-router-dom";
 import {AuthContext} from "../../components/context/AuthContext";
 import styles from "./Customer.module.css";
 import {useForm} from 'react-hook-form';
 
 
-// import {OrderContext} from "../../components/context/OrderContext";
 
 
 function Customer() {
@@ -70,6 +71,15 @@ function Customer() {
                     Authorization: `Bearer ${jwtToken}`, /*BACK TICK!!!!!*/
                 }
             })
+
+
+
+            // const response = await axios.delete(`/orders/delete/ordername/${orderName}`, )
+
+
+
+
+
 
             setMessageDeleteOrder(true);
             setTimeout(() => {
@@ -271,7 +281,7 @@ function Customer() {
             <fieldset className={styles["listOrder-container"]}>
 
                 <ul>
-                    {orders.map((order) => {
+                    {orders.sort((a,b)=>a.id-b.id).map((order) => {
                         return <li key={order.id}>
                             <NavLink
                                 to={
@@ -307,7 +317,7 @@ function Customer() {
                             {/* **************************************************************** */}
                             {/*per order mappen over de items (altijd minimaal 1 aanwezig*/}
                             <ul>
-                                {order.items.map((item) => {
+                                {order.items.sort((a,b)=>a.id-b.id).map((item) => {
                                     return <li key={item.id}>
                                         <span>itemname: </span>{item.itemname}<span>    </span><span>aantal:</span>{item.quantity}
                                     </li>

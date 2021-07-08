@@ -5,7 +5,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContextProvider from "./components/context/AuthContext";
-// import OrderContextProvider from "./components/context/OrderContext";
+import axios from "axios";
+
+axios.defaults.baseURL ="http://localhost:8080";
+axios.defaults.headers.common['Authorization']='Bearer ${jwtToken}';
+axios.defaults.headers.common['Content-Type']='application/json';
 
 ReactDOM.render(
   <React.StrictMode>

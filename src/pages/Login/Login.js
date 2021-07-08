@@ -3,6 +3,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import axios from "axios";
+
 import {AuthContext} from "../../components/context/AuthContext";
 import styles from "../Login/Login.module.css";
 
@@ -45,8 +46,28 @@ function Login() {
                 password: data.password
             }
 
+            //LET OP!!  HIERONDER WORDT axios.defaults.headers.common['Authorization']='Bearer ${jwtToken}';
+            //OVERRULED
+            const response = await axios.post("/authenticate", dataJwt,{
 
-            const response = await axios.post("http://localhost:8080/authenticate", dataJwt);
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `No Auth`, /*BACK TICK!!!!!*/
+                    }
+                })
+
+
+
+            // const response = await axios.delete(`http://localhost:8080/orders/delete/ordername/${orderName}`, {
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         Authorization: `Bearer ${jwtToken}`, /*BACK TICK!!!!!*/
+            //     }
+            // })
+
+
+
+
             console.log("result jwt =", response)
             console.log("result.status", response.status)
             console.log(response.config)
