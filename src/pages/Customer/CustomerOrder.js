@@ -4,13 +4,12 @@ import {AuthContext} from "../../components/context/AuthContext";
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 
-import styles from "./Customer.module.css";
+import styles from "./CustomerCSS/CustomerOrder.module.css";
 import jwt_decode from "jwt-decode";
 
 function CustomerOrder(CustomerUpdatePage) {
 
-    const {updatePageFromAuthState}=useContext(AuthContext);
-
+    const {updatePageFromAuthState} = useContext(AuthContext);
 
 
     const {register, handleSubmit, formState: {errors}, reset,} = useForm();
@@ -102,7 +101,6 @@ function CustomerOrder(CustomerUpdatePage) {
 
         }
     }
-
 
 
     async function onSubmit(data) {
@@ -221,179 +219,185 @@ function CustomerOrder(CustomerUpdatePage) {
 
         <section>
             <h1>CustomerOrder pagina</h1>
+            <fieldset className={styles["order-container"]}>
+<div>
+
+                <fieldset className={styles["listItem-buttons"]}>
+
+                    <button
+                        type="text"
+                        onClick={StartChangeStatus}
+                        className={styles["submit-button"]}
+                    >
+                        Wijzig status
+                    </button>
 
 
-            <fieldset className={styles["listItem-buttons"]}>
-
-                <button
-                    type="text"
-                    onClick={StartChangeStatus}
-                    className={styles["submit-button"]}
-                >
-                    Wijzig status
-                </button>
+                    <button
+                        type="text"
+                        onClick={addItem}
+                        className={styles["submit-button"]}
+                    >
+                        Voeg item toe!
+                    </button>
 
 
-                <button
-                    type="text"
-                    onClick={addItem}
-                    className={styles["submit-button"]}
-                >
-                    Voeg item toe!
-                </button>
+                    <button
+                        onClick={cancelCustomerOrder}
+                        className={styles["submit-button"]}
+                    >
+                        Start Page
+                    </button>
+
+                </fieldset>
+</div>
+
+                <div>rrrrr</div>
 
 
-                <button
-                    onClick={cancelCustomerOrder}
-                    className={styles["submit-button"]}
-                >
-                    Start Page
-                </button>
+                    <>
 
 
-                <>
+                        {changeStatus &&
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <fieldset className={styles["registration-container"]}>
 
 
-                    {changeStatus &&
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <fieldset className={styles["registration-container"]}>
+                                <p>Selecteer status</p>
+                                <select
+                                    {...register("status",)}
+                                >
+                                    <option value="open">open</option>
+                                    <option value="pending">pending</option>
+                                    <option value="finished">finished</option>
+                                </select>
 
 
-                            <p>Selecteer status</p>
-                            <select
-                                {...register("status",)}
-                            >
-                                <option value="open">open</option>
-                                <option value="pending">pending</option>
-                                <option value="finished">finished</option>
-                            </select>
+                                <button
+                                    type="submit"
+                                >
+                                    Wijzig!
+                                </button>
 
 
-                            <button
-                                type="submit"
-                            >
-                                Wijzig!
-                            </button>
-
-
-                            <button
-                                onClick={cancelChangeStatusOrder}
-                                type="text"
-                            >
-                                Cancel
-                            </button>
-
-
-                        </fieldset>
-                    </form>
-                    }
-
-
-                    {addItemStatus &&
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <fieldset className={styles["registration-container"]}>
-
-
-                            <p>Voeg item toe</p>
-                            <label htmlFor="itemname-field">
-                                Item naam:
-                                <input
+                                <button
+                                    onClick={cancelChangeStatusOrder}
                                     type="text"
+                                >
+                                    Cancel
+                                </button>
 
-                                    placeholder="vb. dwg 2021-001"
-                                    {...register("itemname", {
+
+                            </fieldset>
+                        </form>
+                        }
+
+
+                        {addItemStatus &&
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <fieldset className={styles["registration-container"]}>
+
+
+                                <p>Voeg item toe</p>
+                                <label htmlFor="itemname-field">
+                                    Item naam:
+                                    <input
+                                        type="text"
+
+                                        placeholder="vb. dwg 2021-001"
+                                        {...register("itemname", {
+                                                required: true,
+                                                pattern: /^[0-9A-Za-z\s\-\_]+$/
+
+                                            }
+                                        )}
+                                    />
+                                    {errors.itemname && (
+                                        <span className={styles["alert"]}>Vul uw itemname in</span>
+
+                                    )}
+                                </label>
+
+
+                                <label htmlFor="quantity-field">
+                                    Aantal:
+                                    <input
+                                        type="integer"
+                                        // type="reset"
+                                        placeholder="min.1 en hele getallen"
+                                        {...register("quantity", {
                                             required: true,
-                                            pattern: /^[0-9A-Za-z\s\-\_]+$/
+                                            pattern: /^[0-9\b]+$/,
+                                            // pattern:/^([0-9)*$,
+                                            min: 1
+                                        })}
+                                    />
+                                    {errors.quantity && (
+                                        <span className={styles["alert"]}>check invoer</span>
 
-                                        }
-                                     )}
-                                />
-                                {errors.itemname && (
-                                    <span className={styles["alert"]}>Vul uw itemname in</span>
-
-                                )}
-                            </label>
-
-
-                            <label htmlFor="quantity-field">
-                                Aantal:
-                                <input
-                                    type="integer"
-                                    // type="reset"
-                                    placeholder="min.1 en hele getallen"
-                                    {...register("quantity", {
-                                        required: true,
-                                        pattern: /^[0-9\b]+$/,
-                                        // pattern:/^([0-9)*$,
-                                        min: 1
-                                    })}
-                                />
-                                {errors.quantity && (
-                                    <span className={styles["alert"]}>check invoer</span>
-
-                                )}
-                            </label>
+                                    )}
+                                </label>
 
 
-                            {errorAddItem &&
-                            <div className={styles["alert"]}>{messageAddItem}</div>
-                            }
-
-                            <button
-                                type="submit"
-                            >
-                                Voeg toe!
-                            </button>
-
-
-                            <button
-                                onClick={cancelAddItem}
-                                type="text"
-                            >
-                                Cancel
-                            </button>
-
-
-                        </fieldset>
-                    </form>
-                    }
-
-
-                </>
-            </fieldset>
-
-            <h2>{orderIndividual.ordername}</h2>
-            <h3>status: {orderIndividual.status}</h3>
-
-            {messageDeleteItem &&
-            <h3>Item deleted!
-            <div>Binnen enkele seconden terug naar customer bladzijde</div>
-            </h3>
-
-            }
-
-            {errorMessageDeleteItem &&
-            <h3>Er is iets misgegaan!!</h3>}
-
-            <ul>
-                {orderIndividual.items.map((item) => {
-                    return <li key={item.id}>
-
-
-                        <NavLink
-                            to={
-                                {
-                                    pathname: `/customerOrderItem`,
-                                    state: {
-                                        item: item,
-                                        status: orderIndividual.status
-
-                                    }
+                                {errorAddItem &&
+                                <div className={styles["alert"]}>{messageAddItem}</div>
                                 }
 
-                            }
-                        >
-                            <p>item naam:<span>{item.itemname}
+                                <button
+                                    type="submit"
+                                >
+                                    Voeg toe!
+                                </button>
+
+
+                                <button
+                                    onClick={cancelAddItem}
+                                    type="text"
+                                >
+                                    Cancel
+                                </button>
+
+
+                            </fieldset>
+                        </form>
+                        }
+
+
+                    </>
+
+
+                <h2>{orderIndividual.ordername}</h2>
+                <h3>status: {orderIndividual.status}</h3>
+
+                {messageDeleteItem &&
+                <h3>Item deleted!
+                    <div>Binnen enkele seconden terug naar customer bladzijde</div>
+                </h3>
+
+                }
+
+                {errorMessageDeleteItem &&
+                <h3>Er is iets misgegaan!!</h3>}
+
+                <ul>
+                    {orderIndividual.items.map((item) => {
+                        return <li key={item.id}>
+
+
+                            <NavLink
+                                to={
+                                    {
+                                        pathname: `/customerOrderItem`,
+                                        state: {
+                                            item: item,
+                                            status: orderIndividual.status
+
+                                        }
+                                    }
+
+                                }
+                            >
+                                <p>item naam:<span>{item.itemname}
 
 
 
@@ -401,38 +405,38 @@ function CustomerOrder(CustomerUpdatePage) {
                             </span>
 
 
-                            </p>
+                                </p>
 
-                        </NavLink>
-
-
-                        {/*<div>Naam: {item.itemname} </div>*/}
-                        <div>Quantity: {item.quantity} </div>
-                        <div>jobs: {item.jobsFromItem.length} </div>
+                            </NavLink>
 
 
-                        <span>
+                            {/*<div>Naam: {item.itemname} </div>*/}
+                            <div>Quantity: {item.quantity} </div>
+                            <div>jobs: {item.jobsFromItem.length} </div>
+
+
+                            <span>
 
     <div>
-        {orderIndividual.status==='open'&&
+        {orderIndividual.status === 'open' &&
 
-    <button
+        <button
 
-        onClick={() => deleteItem(item.itemname)}
-        type="text"
-    >
-        Delete Item
-    </button>
+            onClick={() => deleteItem(item.itemname)}
+            type="text"
+        >
+            Delete Item
+        </button>
         }
 </div>
 
 
 </span>
-                    </li>
-                })}
-            </ul>
+                        </li>
+                    })}
+                </ul>
 
-
+            </fieldset>
         </section>
     );
 };

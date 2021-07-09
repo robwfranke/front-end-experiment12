@@ -12,12 +12,13 @@
 }
 
 .listOrder-container {
+    display: flex;
     width: 50%;
     box-sizing: border-box;
     flex-direction: row;
     color: black;
     background-color: coral;
-    display: flex;
+
     justify-content: left;
     height: 60%;
     align-items: flex-start;
@@ -59,3 +60,6 @@
     font-size: 17px;
     color: blue;
 }
+
+
+

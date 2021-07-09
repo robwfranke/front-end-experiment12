@@ -4,7 +4,7 @@ import axios from "axios";
 // import axios from "../../components/HttpHeader";
 import {useLocation, useHistory, NavLink} from "react-router-dom";
 import {AuthContext} from "../../components/context/AuthContext";
-import styles from "./Customer.module.css";
+import styles from "./CustomerCSS/Customer.module.css";
 import {useForm} from 'react-hook-form';
 
 
@@ -39,6 +39,10 @@ function Customer() {
 
     const jwtToken = localStorage.getItem('token');
     const history = useHistory();
+
+
+
+    const {updatePageFromAuthState}=useContext(AuthContext);
 
 
     function getOrders() {
@@ -295,7 +299,7 @@ function Customer() {
 
                                 }
                             >
-                                <p>ordernaam:<span>{order.ordername}</span></p>
+                                <p>ordernaam: <span>{order.ordername}</span></p>
 
                             </NavLink>
                             <p>Status:{order.status}</p>
